@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿// 暂不使用
+
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -55,3 +57,4 @@ public class InputMgr : BaseManager<InputMgr>
     }
 	
 }
+*/
