@@ -1,0 +1,4 @@
+repository "Echo@soundlost@cloud.cn"
+  path "/"
+    br "/main"
+    co "/main"
