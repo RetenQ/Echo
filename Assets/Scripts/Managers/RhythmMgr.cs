@@ -5,7 +5,16 @@ using UnityEngine;
 // 管理BGM的东西
 public class RhythmMgr : SingletonMono<RhythmMgr>
 {
-    
+
+    [Header("注册区")]
+    public List<BaseObj> Objs;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        Objs = new List<BaseObj>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +32,25 @@ public class RhythmMgr : SingletonMono<RhythmMgr>
         
     }
 
+    // 控制Obj
+    public void RegistertObj(BaseObj obj)
+    {
+        Objs.Add(obj);
+    }
+
+    public void RemoveObj(BaseObj obj)
+    {
+        Objs.Remove(obj);
+    }
+   
+    public void NotifyObjs()
+    {
+        foreach (BaseObj _obj in Objs)
+        {
+            _obj.RhyActOn(); 
+        }
+    }
+
     public void PlayerRhyOn()
     {
 
@@ -38,6 +66,6 @@ public class RhythmMgr : SingletonMono<RhythmMgr>
     /// </summary>
     public void SystemRhy()
     {
-
+        NotifyObjs(); //通知
     }
 }
