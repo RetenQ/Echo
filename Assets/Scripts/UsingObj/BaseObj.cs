@@ -2,6 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ *     protected override void ObjAwake()
+    {
+
+    }
+
+    protected override void ObjStart()
+    {
+
+    }
+
+    protected override void ObjUpdate()
+    {
+        
+    }
+*/
+
 public class BaseObj : MonoBehaviour
 {
     [Header("基础数值")]
@@ -19,6 +36,14 @@ public class BaseObj : MonoBehaviour
     private void Awake()
     {
         nowHp = maxHp;  // 初始生命即为最大值
+        ObjAwake();
+
+
+    }
+
+    protected virtual void ObjAwake()
+    {
+
     }
 
     // Start is called before the first frame update
@@ -29,6 +54,12 @@ public class BaseObj : MonoBehaviour
             // 如果是在节奏系统中的物体，需要注册
             RhythmMgr.GetInstance().RegistertObj(this);
         }
+        ObjStart();
+    }
+
+    protected virtual void ObjStart()
+    {
+
     }
 
     // Update is called once per frame
@@ -51,7 +82,7 @@ public class BaseObj : MonoBehaviour
         ObjUpdate();
     }
 
-    public virtual void ObjUpdate()
+    protected virtual void ObjUpdate()
     {
         // 每一个Obj自己的Update
 
