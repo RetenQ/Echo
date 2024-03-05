@@ -9,6 +9,14 @@ public class PlayerBase : Chara
     [SerializeField] private bool isdash = false; 
     private Vector2 movement;
 
+    public Vector2 mouseLocation;
+    private Vector2 ToMouseDirection;
+
+
+    [Header("子弹区")]
+    public GameObject bullet;
+    public Transform firePosition;
+    public float bulletSpeed; 
 
     [Header("组件")]
     public Rigidbody2D rb;
@@ -29,7 +37,9 @@ public class PlayerBase : Chara
 
     protected override void ObjUpdate()
     {
-        if(!islock)
+        DataUpdater();
+
+        if (!islock)
         {
             if (!isdash)
             {
@@ -65,6 +75,7 @@ public class PlayerBase : Chara
             if (Input.GetMouseButtonDown(0))
             {
                 //左键
+                Fire();
             }
 
             if (Input.GetMouseButtonDown(1))
@@ -82,8 +93,6 @@ public class PlayerBase : Chara
         movement.y = Input.GetAxisRaw("Vertical");
         //！ 注：GetAxisRaw只返回{-1 ,0 , 1}，不做手柄优化且希望操作干净，故这里使用GetAxisRaw
 
-        Debug.Log(movement.x + " | " +  movement.y);
-
         //!默认乘50
         rb.MovePosition(rb.position + movement * speed * Time.deltaTime *50);
         //这里直接使用MovePosition
@@ -94,15 +103,16 @@ public class PlayerBase : Chara
         if (movement.x != 0 || movement.y != 0)
         {
             //调整朝向
-            if (movement.x < 0)
+            //此处默认角色朝向是右侧
+            if (movement.x > 0)
             {
-                transform.localScale = new Vector3(-(movement.x), transform.localScale.y, transform.localScale.z);
+                transform.localScale = new Vector3(movement.x, transform.localScale.y, transform.localScale.z);
                 
             }
 
-            if (movement.x > 0)
+            if (movement.x < 0)
             {
-                transform.localScale = new Vector3(-(movement.x), transform.localScale.y, transform.localScale.z);
+                transform.localScale = new Vector3(movement.x, transform.localScale.y, transform.localScale.z);
             }
 
             return true;
@@ -112,5 +122,18 @@ public class PlayerBase : Chara
             return false;
             //表示玩家没有移动
         }
+    }
+
+    private void DataUpdater()
+    {
+        mouseLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        ToMouseDirection = (mouseLocation - new Vector2(transform.position.x, transform.position.y)).normalized;
+    }
+
+    private void Fire()
+    {
+        GameObject bullet_temp = Instantiate(bullet, firePosition.position, Quaternion.identity);
+        bullet_temp.GetComponent<Bullet>().SetBullet(attack);
+        bullet_temp.GetComponent<Rigidbody2D>().AddForce(ToMouseDirection * bulletSpeed, ForceMode2D.Impulse);
     }
 }
