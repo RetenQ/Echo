@@ -8,9 +8,18 @@ public class PlayerBase : Chara
     [SerializeField] private bool islock = false; //锁定时无法操作
     [SerializeField] private bool isdash = false; 
     private Vector2 movement;
+    [SerializeField] private Vector2 lastMovement;//最后一次非0方向
 
     public Vector2 mouseLocation;
     private Vector2 ToMouseDirection;
+
+    [Header("冲刺数据")]
+    public float dashCD = 2;
+    public float dashMul;  // 此处是dash的加速倍数
+    [SerializeField] private float dashTimer = -99f;
+    public float maxDashTime = 1.5f;
+    public float stopDashTime = 0.1f; //多久可以手动停止
+    [SerializeField] private float startDashTimer;
 
 
     [Header("子弹区")]
@@ -46,30 +55,39 @@ public class PlayerBase : Chara
                 //非冲刺状态下进行的操作
                 Movement();
 
-                //这里的代码是为了方便之前随时可以冲刺而进行的
-                /*            if (Input.GetKeyDown(KeyCode.LeftShift) && dashTimer <= 0)
-                            {
-                                soundMgr.ClipPlay(2);
-                                isdash = true;
-                                startDashTimer = maxDashTime;
+                if (Input.GetKeyDown(KeyCode.LeftControl) && dashTimer <= 0)
+                {
+                    isdash = true;
+                    startDashTimer = maxDashTime; // Timer设置为最大冲刺时间倒计时
 
-                                dashTimer = dashCD;
-                            }*/
+                    dashTimer = dashCD;
+                }
             }
             else
             {
+                if(Input.GetKeyDown(KeyCode.LeftControl) && startDashTimer <= maxDashTime - stopDashTime)
+                {
+                    // 如果启动后再次按下冲刺
+                    startDashTimer = 0;
+                    isdash = false;
+
+                }
 
                 // 冲刺Mode
-                /*            startDashTimer -= Time.deltaTime;
-                            if (startDashTimer <= 0)
-                            {
-                                isdash = false;
+                    startDashTimer -= Time.deltaTime;
+                    if (startDashTimer <= 0)
+                    {
+                        // 时间到了结束状态
+                        isdash = false;
 
-                            }
-                            else
-                            {
-                                rb.velocity = movement * dashSpeed;  
-                            }*/
+                    }
+                    else
+                    {
+
+                        // 处于冲刺状态下进行冲刺
+                        // 这里位置使用的是最后移动的方向
+                        rb.velocity = lastMovement * speed * dashMul;  
+                    }
             }
 
             if (Input.GetMouseButtonDown(0))
@@ -85,18 +103,32 @@ public class PlayerBase : Chara
         } 
     }
 
+    private void FixedUpdate()
+    {
+        FiexdDataUpdater();
+    }
+
     public bool Movement()
     {
 
         // 更新movement的参数
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        if(movement.x !=0 || movement.y !=0)
+        {
+            lastMovement = movement; //记录最后方向
+        }
+
         //！ 注：GetAxisRaw只返回{-1 ,0 , 1}，不做手柄优化且希望操作干净，故这里使用GetAxisRaw
 
+        // 直接使用velocity更好用，所以这里改了
         //!默认乘50
-        rb.MovePosition(rb.position + movement * speed * Time.deltaTime *50);
+       // rb.MovePosition(rb.position + movement * speed * Time.deltaTime *50);
         //这里直接使用MovePosition
         //因为是放在Update里面且需要每帧控制，所以使用deltaTime
+
+        rb.velocity = new Vector2(movement.x * speed  , movement.y *speed);
 
 
         // anim.SetBool("isRun",true);
@@ -129,6 +161,17 @@ public class PlayerBase : Chara
         mouseLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         ToMouseDirection = (mouseLocation - new Vector2(transform.position.x, transform.position.y)).normalized;
     }
+
+    private void FiexdDataUpdater()
+    {
+        // 需要准确计时的数据放在这里
+        if (dashTimer >= 0)
+        {
+            // isdash = false;
+            dashTimer -= Time.deltaTime;
+        }
+    }
+
 
     private void Fire()
     {

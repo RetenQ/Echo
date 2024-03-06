@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class Enemy : Chara
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("×é¼þ")]
+    public Animator animator;
+    protected override void ObjAwake()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void ObjStart()
     {
-        
+
+    }
+
+    protected override void ObjUpdate()
+    {
+
+    }
+
+    public override void Hurt(float _damage)
+    {
+        Debug.Log("?"); 
+        nowHp -= _damage;
+        animator.Play("Hurt"); 
     }
 }

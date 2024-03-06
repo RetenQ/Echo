@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- *     protected override void ObjAwake()
+ *    
+ *    
+    protected override void ObjAwake()
     {
 
     }
@@ -105,7 +107,15 @@ public class BaseObj : MonoBehaviour
 
     public virtual void Hurt(float _damage)
     {
-        nowHp = _damage;
+        if(gameObject.CompareTag("Wall"))
+        {
+            // 目前不做墙体伤害
+        }
+        else
+        {
+            
+            nowHp = _damage;
+        }
     }
 
     public void RhyActOn()
