@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerBase : Chara
 {
+
     [Header("Player属性")]
+    [SerializeField] private bool inRhy; // 是否在节奏区间
     [SerializeField] private bool islock = false; //锁定时无法操作
     [SerializeField] private bool isdash = false; 
     private Vector2 movement;
@@ -31,17 +33,20 @@ public class PlayerBase : Chara
     public Rigidbody2D rb;
     public Collider2D col;
     public Animator animator;
+    public SpriteRenderer sr;
 
     protected override void ObjAwake()
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     protected override void ObjStart()
     {
-
+/*        sr.color = Color.blue;
+*/
     }
 
     protected override void ObjUpdate()
@@ -178,5 +183,21 @@ public class PlayerBase : Chara
         GameObject bullet_temp = Instantiate(bullet, firePosition.position, Quaternion.identity);
         bullet_temp.GetComponent<Bullet>().SetBullet(attack);
         bullet_temp.GetComponent<Rigidbody2D>().AddForce(ToMouseDirection * bulletSpeed, ForceMode2D.Impulse);
+    }
+
+    public void PlayerRhyOn()
+    {
+        Debug.Log("ON");
+        inRhy = true;
+        sr.color = Color.red; 
+    }
+
+    public void PlayerRhyOff()
+    {
+        Debug.Log("OFF!");
+
+        inRhy = false;
+        sr.color = Color.blue;
+
     }
 }

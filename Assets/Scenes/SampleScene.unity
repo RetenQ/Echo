@@ -295,6 +295,60 @@ Transform:
   m_Father: {fileID: 998280642}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &795766138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 795766139}
+  - component: {fileID: 795766140}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &795766139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795766138}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2870944, y: 0.58844185, z: -0.026190119}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &795766140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795766138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: add32a04784fbb14ba14e244ee07bdab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RhyTolerance: 1
+  RhyToleranceTimer: 0
+  RhyBgmName: 0
+  RhyInterval: 5
+  RhyIntervalTimer: 0
+  isAvive: 0
+  playerRhy: 0
+  Player: {fileID: 0}
+  PlayerSc: {fileID: 0}
+  Objs: []
 --- !u!1 &865182095
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,7 +496,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.0141509175, g: 0.7506965, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.74509805, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -524,6 +578,7 @@ MonoBehaviour:
   speed: 1
   isRhyObj: 0
   isRhyAct: 0
+  inRhy: 0
   islock: 0
   isdash: 0
   lastMovement: {x: 0, y: 0}
@@ -540,6 +595,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   col: {fileID: 0}
   animator: {fileID: 0}
+  sr: {fileID: 0}
 --- !u!95 &998280646
 Animator:
   serializedVersion: 5
