@@ -35,6 +35,10 @@ public class PlayerBase : Chara
     public Animator animator;
     public SpriteRenderer sr;
 
+    [Header("≤‚ ‘ ˝æ›")]
+    public int RightD; 
+    public int ErrorD; 
+
     protected override void ObjAwake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -51,6 +55,21 @@ public class PlayerBase : Chara
 
     protected override void ObjUpdate()
     {
+        // ≤‚ ‘”√
+        if(Input.GetKeyDown(KeyCode.K)) {
+            if (inRhy)
+            {
+                RightD++;
+            }
+            else
+            {
+                ErrorD++;
+            }
+        }
+
+        Debug.Log("R:" + RightD + " || E:" + ErrorD);
+
+
         DataUpdater();
 
         if (!islock)

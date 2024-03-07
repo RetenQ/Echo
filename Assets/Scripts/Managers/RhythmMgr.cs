@@ -19,6 +19,9 @@ public class RhythmMgr : SingletonMono<RhythmMgr>
     [SerializeField]private PlayerBase PlayerSc; 
     public List<BaseObj> Objs;
 
+    [Header("×é¼þ")]
+    public AudioSource AudioSource;
+
     protected override void Awake()
     {
         base.Awake();
@@ -30,6 +33,7 @@ public class RhythmMgr : SingletonMono<RhythmMgr>
     {
         Player = GameObject.FindWithTag("Player"); 
         PlayerSc = Player.GetComponent<PlayerBase>();
+        AudioSource = GetComponent<AudioSource>();
         RhyToleranceTimer = RhyTolerance;
         RhyIntervalTimer = RhyInterval;
     }
@@ -98,7 +102,8 @@ public class RhythmMgr : SingletonMono<RhythmMgr>
 
     private void RhyMgrStart()
     {
-        isAvive = true; 
+        isAvive = true;
+        AudioSource.Play();
         // ²¥·Å
     }
 
