@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: add32a04784fbb14ba14e244ee07bdab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RhyTolerance: 0.05
+  RhyTolerance: 0.15
   RhyToleranceTimer: 0
   RhyBgmName: 0
   RhyInterval: 0.5
@@ -694,6 +694,8 @@ MonoBehaviour:
   col: {fileID: 0}
   animator: {fileID: 0}
   sr: {fileID: 0}
+  RightD: 0
+  ErrorD: 0
 --- !u!95 &998280646
 Animator:
   serializedVersion: 5
