@@ -118,6 +118,19 @@ public class BaseObj : MonoBehaviour
         }
     }
 
+    public virtual void Heal(float _heal)
+    {
+        if(nowHp + _heal <= maxHp)
+        {
+            nowHp += _heal;
+        }
+
+        if(nowHp > maxHp)
+        {
+            nowHp = maxHp;
+        }
+    }
+
     public void RhyActOn()
     {
         // 将Rhy操作打开，具体释放时机会在Update中进行

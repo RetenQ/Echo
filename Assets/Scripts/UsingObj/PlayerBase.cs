@@ -15,6 +15,8 @@ public class PlayerBase : Chara
     public Vector2 mouseLocation;
     private Vector2 ToMouseDirection;
 
+    [SerializeField] private int facing;
+
     [Header("冲刺数据")]
     public float dashCD = 2;
     public float dashMul;  // 此处是dash的加速倍数
@@ -23,6 +25,10 @@ public class PlayerBase : Chara
     public float stopDashTime = 0.1f; //多久可以手动停止
     [SerializeField] private float startDashTimer;
 
+    [Header("节奏区域")]
+    public float nowBeatValue; // 目前压点的得分 ， 最高100
+
+    // public float nowRhyPoint; //得分
 
     [Header("子弹区")]
     public GameObject bullet;
@@ -77,7 +83,8 @@ public class PlayerBase : Chara
             if (!isdash)
             {
                 //非冲刺状态下进行的操作
-                Movement();
+
+                facing = Movement(); // 记录面朝方向
 
                 if (Input.GetKeyDown(KeyCode.LeftControl) && dashTimer <= 0)
                 {
@@ -132,7 +139,7 @@ public class PlayerBase : Chara
         FiexdDataUpdater();
     }
 
-    public bool Movement()
+    public int Movement()
     {
 
         // 更新movement的参数
@@ -171,11 +178,20 @@ public class PlayerBase : Chara
                 transform.localScale = new Vector3(movement.x, transform.localScale.y, transform.localScale.z);
             }
 
-            return true;
+           
+            // 左右上下 1234
+            if(lastMovement.x == -1) return 1; //左
+            if(lastMovement.x == 1)  return 2; //右
+            if(lastMovement.y == 1)  return 3; //上
+            if(lastMovement.y == -1) return 4; //下
+
+
+            return 0;
+
         }
         else
         {
-            return false;
+            return 0;
             //表示玩家没有移动
         }
     }
@@ -219,4 +235,30 @@ public class PlayerBase : Chara
         sr.color = Color.blue;
 
     }
+
+    // 控制beat的区域
+    public void AddBeatPont()
+    {
+        if(nowBeatValue < 100)
+        {
+            nowBeatValue += 10; //默认+10
+        }
+    }
+
+    public void AddBeatPont(float _value)
+    {
+        if(nowBeatValue + _value <= 100)
+        {
+            nowBeatValue += _value; 
+        }
+    }
+
+    public void ClearBeatValue()
+    {
+        // 触发一些技能
+
+        //
+        nowBeatValue = 0;
+    }
+
 }
