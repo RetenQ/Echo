@@ -114,7 +114,7 @@ public class BaseObj : MonoBehaviour
         else
         {
             
-            nowHp = _damage;
+            nowHp -= _damage;
         }
     }
 

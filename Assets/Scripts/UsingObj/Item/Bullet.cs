@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     // 子弹
 
     public float damage;
+    public float damageMul = 1.0f;
     public float maxLifeTime;
     public string targetStr;
     public string ignoreStr;
@@ -38,6 +39,12 @@ public class Bullet : MonoBehaviour
         this.damage = _damage;
     }
 
+    public void SetBullet(float _damage , float _mul)
+    {
+        this.damage = _damage;
+        this.damageMul = _mul;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log(collision);
@@ -52,7 +59,7 @@ public class Bullet : MonoBehaviour
 
             if (collision.CompareTag(targetStr))
             {
-                collision.gameObject.GetComponent<BaseObj>().Hurt(damage);  //造成伤害
+                collision.gameObject.GetComponent<BaseObj>().Hurt(damage * damageMul);  //造成伤害
 
                 rb.velocity = Vector3.zero;
 

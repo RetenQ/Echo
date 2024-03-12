@@ -25,6 +25,8 @@ public class PlayerBase : Chara
     public float stopDashTime = 0.1f; //多久可以手动停止
     [SerializeField] private float startDashTimer;
     public GameObject trailEffect; 
+    public GameObject trailEffect_ex; 
+    public GameObject trailEffect_last; 
 
     [Header("节奏区域")]
     public float nowBeatValue; // 目前压点的得分 ， 最高100
@@ -33,8 +35,10 @@ public class PlayerBase : Chara
 
     [Header("子弹区")]
     public GameObject bullet;
+    public GameObject bullet_ex;
     public Transform firePosition;
     public float bulletSpeed; 
+    public float bulletSpeed_ex; 
 
     [Header("组件")]
     public Rigidbody2D rb;
@@ -74,7 +78,7 @@ public class PlayerBase : Chara
             }
         }
 
-        Debug.Log("R:" + RightD + " || E:" + ErrorD);
+        // Debug.Log("R:" + RightD + " || E:" + ErrorD);
 
 
         DataUpdater();
@@ -154,7 +158,18 @@ public class PlayerBase : Chara
 
     private void DashOn()
     {
-        trailEffect.SetActive(true);
+        if (inRhy)
+        {
+            trailEffect_ex.SetActive(true);
+            trailEffect_last = trailEffect_ex;
+
+        }
+        else
+        {
+            trailEffect.SetActive(true);
+            trailEffect_last = trailEffect;
+        }
+
         isdash = true;
         startDashTimer = maxDashTime; // Timer设置为最大冲刺时间倒计时
 
@@ -163,7 +178,7 @@ public class PlayerBase : Chara
 
     private void DashOff()
     {
-        trailEffect.SetActive(false);
+        trailEffect_last.SetActive(false);
         isdash = false;
 
     }
@@ -245,9 +260,19 @@ public class PlayerBase : Chara
 
     private void Fire()
     {
-        GameObject bullet_temp = Instantiate(bullet, firePosition.position, Quaternion.identity);
-        bullet_temp.GetComponent<Bullet>().SetBullet(attack);
-        bullet_temp.GetComponent<Rigidbody2D>().AddForce(ToMouseDirection * bulletSpeed, ForceMode2D.Impulse);
+        if (inRhy)
+        {
+            GameObject bullet_temp = Instantiate(bullet_ex, firePosition.position, Quaternion.identity);
+            bullet_temp.GetComponent<Bullet>().SetBullet(attack , 2.0f);
+            bullet_temp.GetComponent<Rigidbody2D>().AddForce(ToMouseDirection * bulletSpeed_ex, ForceMode2D.Impulse);
+        }
+        else
+        {
+            GameObject bullet_temp = Instantiate(bullet, firePosition.position, Quaternion.identity);
+            bullet_temp.GetComponent<Bullet>().SetBullet(attack);
+            bullet_temp.GetComponent<Rigidbody2D>().AddForce(ToMouseDirection * bulletSpeed, ForceMode2D.Impulse);
+        }
+
     }
 
     public void PlayerRhyOn()
