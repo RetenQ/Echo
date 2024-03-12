@@ -24,6 +24,7 @@ public class PlayerBase : Chara
     public float maxDashTime = 1.5f;
     public float stopDashTime = 0.1f; //多久可以手动停止
     [SerializeField] private float startDashTimer;
+    public GameObject trailEffect; 
 
     [Header("节奏区域")]
     public float nowBeatValue; // 目前压点的得分 ， 最高100
@@ -102,28 +103,26 @@ public class PlayerBase : Chara
 
                 if (Input.GetKeyDown(KeyCode.LeftControl) && dashTimer <= 0)
                 {
-                    isdash = true;
-                    startDashTimer = maxDashTime; // Timer设置为最大冲刺时间倒计时
-
-                    dashTimer = dashCD;
+                    DashOn();
                 }
             }
             else
             {
+                PlayAnim("dash");
                 if(Input.GetKeyDown(KeyCode.LeftControl) && startDashTimer <= maxDashTime - stopDashTime)
                 {
                     // 如果启动后再次按下冲刺
                     startDashTimer = 0;
-                    isdash = false;
+                        DashOff();
 
                 }
 
                 // 冲刺Mode
-                    startDashTimer -= Time.deltaTime;
+                startDashTimer -= Time.deltaTime;
                     if (startDashTimer <= 0)
                     {
-                        // 时间到了结束状态
-                        isdash = false;
+                    // 时间到了结束状态
+                        DashOff();
 
                     }
                     else
@@ -151,6 +150,22 @@ public class PlayerBase : Chara
     private void FixedUpdate()
     {
         FiexdDataUpdater();
+    }
+
+    private void DashOn()
+    {
+        trailEffect.SetActive(true);
+        isdash = true;
+        startDashTimer = maxDashTime; // Timer设置为最大冲刺时间倒计时
+
+        dashTimer = dashCD;
+    }
+
+    private void DashOff()
+    {
+        trailEffect.SetActive(false);
+        isdash = false;
+
     }
 
     public void Movement()
@@ -237,17 +252,17 @@ public class PlayerBase : Chara
 
     public void PlayerRhyOn()
     {
-        Debug.Log("ON");
+        //Debug.Log("ON");
         inRhy = true;
-        sr.color = Color.red; 
+       // sr.color = Color.red; 
     }
 
     public void PlayerRhyOff()
     {
-        Debug.Log("OFF!");
+        //Debug.Log("OFF!");
 
         inRhy = false;
-        sr.color = Color.blue;
+        //sr.color = Color.blue;
 
     }
 
