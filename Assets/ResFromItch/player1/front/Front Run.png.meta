@@ -115,7 +115,175 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Front Run_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 17.125
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7f1a89c6ed75f24ca4d96acf10376ce
+      internalID: 846938403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front Run_1
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 0
+        width: 17.125
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56cddb773cee9564b8cddcdc4582db75
+      internalID: -362505111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front Run_2
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 0
+        width: 17.125
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3653d9f6035e6a9419524decfea528ea
+      internalID: -174034819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front Run_3
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 0
+        width: 17.125
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5ff8325780a2174ca51ad3369db382d
+      internalID: 126670302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front Run_4
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 0
+        width: 17.125
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 812d8c59d7205f342b9b6f54360c5d56
+      internalID: -1029349644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front Run_5
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 0
+        width: 17.125
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 077aa623047736940ab94c6476fb889c
+      internalID: -640175049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front Run_6
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 0
+        width: 17.125
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 487e5cf4181c81046b4d96710fe240db
+      internalID: -258090069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front Run_7
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 0
+        width: 17.125
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75bd61119fb5fd34daf8722c6572a2da
+      internalID: 770638669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -126,7 +294,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Front Run_0: 846938403
+      Front Run_1: -362505111
+      Front Run_2: -174034819
+      Front Run_3: 126670302
+      Front Run_4: -1029349644
+      Front Run_5: -640175049
+      Front Run_6: -258090069
+      Front Run_7: 770638669
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
