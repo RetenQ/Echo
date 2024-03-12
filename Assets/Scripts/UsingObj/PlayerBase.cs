@@ -84,7 +84,21 @@ public class PlayerBase : Chara
             {
                 //非冲刺状态下进行的操作
 
-                facing = Movement(); // 记录面朝方向
+                Movement();
+
+                if (lastMovement.x == -1)       facing = 1; //左
+                else if (lastMovement.x == 1)   facing = 2; //右
+                else if (lastMovement.y == 1)   facing = 3; //上
+                else                            facing = 4; //下
+                
+                if(facing!=0  && (movement.x != 0 || movement.y != 0))
+                {
+                    PlayAnim("run");//运动
+                }
+                else
+                {
+                    PlayAnim("idle"); 
+                }
 
                 if (Input.GetKeyDown(KeyCode.LeftControl) && dashTimer <= 0)
                 {
@@ -139,7 +153,7 @@ public class PlayerBase : Chara
         FiexdDataUpdater();
     }
 
-    public int Movement()
+    public void Movement()
     {
 
         // 更新movement的参数
@@ -178,21 +192,22 @@ public class PlayerBase : Chara
                 transform.localScale = new Vector3(movement.x, transform.localScale.y, transform.localScale.z);
             }
 
-           
+
             // 左右上下 1234
-            if(lastMovement.x == -1) return 1; //左
-            if(lastMovement.x == 1)  return 2; //右
-            if(lastMovement.y == 1)  return 3; //上
-            if(lastMovement.y == -1) return 4; //下
+/*            if (lastMovement.x == -1) return 1; //左
+            else if (lastMovement.x == 1) return 2; //右
+            else if (lastMovement.y == 1) return 3; //上
+            else if (lastMovement.y == -1) return 4; //下
+            else return 4;*/
 
+                //return 0;
 
-            return 0;
-
-        }
-        else
+            }
+            else
         {
-            return 0;
-            //表示玩家没有移动
+
+
+            // return 0;
         }
     }
 
@@ -259,6 +274,35 @@ public class PlayerBase : Chara
 
         //
         nowBeatValue = 0;
+    }
+
+    public void PlayAnim(string _name)
+    {
+        string res = _name;
+
+/*        if(_name.Equals("idle"))
+        {
+
+        }*/
+
+        // 左右上下 1234
+        if (facing == 3)
+        {
+            res = "p1-b-" + _name;
+        }
+        else if (facing == 4)
+        {
+            res = "p1-f-" + _name;
+        }
+        else
+        {
+            res = "p1-s-" + _name;
+
+        }
+
+        //Debug.Log(res);
+        animator.Play(res);
+
     }
 
 }
