@@ -9,6 +9,7 @@ public class PlayerBase : Chara
     [SerializeField] private bool inRhy; // 是否在节奏区间
     [SerializeField] private bool islock = false; //锁定时无法操作
     [SerializeField] private bool isdash = false; 
+    [SerializeField] private bool isRun = false; 
     private Vector2 movement;
     [SerializeField] private Vector2 lastMovement;//最后一次非0方向
 
@@ -45,6 +46,13 @@ public class PlayerBase : Chara
     public Collider2D col;
     public Animator animator;
     public SpriteRenderer sr;
+
+    public AudioClip[] attackClips;
+    public AudioClip[] dashClips;
+
+    public AudioSource audio_run;
+    public AudioSource audio_attack;
+    public AudioSource audio_dash;
 
     [Header("测试数据")]
     public int RightD; 
@@ -99,10 +107,13 @@ public class PlayerBase : Chara
                 if(facing!=0  && (movement.x != 0 || movement.y != 0))
                 {
                     PlayAnim("run");//运动
+
                 }
                 else
                 {
-                    PlayAnim("idle"); 
+                    PlayAnim("idle");
+
+
                 }
 
                 if (Input.GetKeyDown(KeyCode.LeftControl) && dashTimer <= 0)
@@ -162,12 +173,16 @@ public class PlayerBase : Chara
         {
             trailEffect_ex.SetActive(true);
             trailEffect_last = trailEffect_ex;
+            audio_dash.clip = dashClips[1];
+            audio_dash.Play();
 
         }
         else
         {
             trailEffect.SetActive(true);
             trailEffect_last = trailEffect;
+            audio_dash.clip = dashClips[0];
+            audio_dash.Play();
         }
 
         isdash = true;
@@ -193,6 +208,9 @@ public class PlayerBase : Chara
         if(movement.x !=0 || movement.y !=0)
         {
             lastMovement = movement; //记录最后方向
+            isRun = true; 
+        }else{
+            isRun = false;
         }
 
         //！ 注：GetAxisRaw只返回{-1 ,0 , 1}，不做手柄优化且希望操作干净，故这里使用GetAxisRaw
@@ -232,10 +250,10 @@ public class PlayerBase : Chara
 
                 //return 0;
 
-            }
+
+         }
             else
         {
-
 
             // return 0;
         }
@@ -245,6 +263,18 @@ public class PlayerBase : Chara
     {
         mouseLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         ToMouseDirection = (mouseLocation - new Vector2(transform.position.x, transform.position.y)).normalized;
+
+        if (isRun)
+        {
+            if (!audio_run.isPlaying)
+            {
+                audio_run.Play();
+            }
+        }
+        else
+        {
+            audio_run.Pause();
+        }
     }
 
     private void FiexdDataUpdater()
@@ -262,12 +292,17 @@ public class PlayerBase : Chara
     {
         if (inRhy)
         {
+            audio_attack.clip = attackClips[1];
+            audio_attack.Play();
+
             GameObject bullet_temp = Instantiate(bullet_ex, firePosition.position, Quaternion.identity);
             bullet_temp.GetComponent<Bullet>().SetBullet(attack , 2.0f);
             bullet_temp.GetComponent<Rigidbody2D>().AddForce(ToMouseDirection * bulletSpeed_ex, ForceMode2D.Impulse);
         }
         else
         {
+            audio_attack.clip = attackClips[0];
+            audio_attack.Play();
             GameObject bullet_temp = Instantiate(bullet, firePosition.position, Quaternion.identity);
             bullet_temp.GetComponent<Bullet>().SetBullet(attack);
             bullet_temp.GetComponent<Rigidbody2D>().AddForce(ToMouseDirection * bulletSpeed, ForceMode2D.Impulse);

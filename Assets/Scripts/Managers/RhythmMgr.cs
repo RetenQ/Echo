@@ -9,6 +9,10 @@ public class RhythmMgr : SingletonMono<RhythmMgr>
     public float RhyTolerance;
     public float RhyToleranceTimer;
     public float RhyBgmName;
+
+    public float RhyBpm;
+    public float RhyMul; 
+
     public float RhyInterval; // 鼓点间隔，后期使用插件这块可能会弃用 
     public float RhyIntervalTimer; 
     [SerializeField] private bool isAvive = false;
@@ -34,6 +38,10 @@ public class RhythmMgr : SingletonMono<RhythmMgr>
         Player = GameObject.FindWithTag("Player"); 
         PlayerSc = Player.GetComponent<PlayerBase>();
         AudioSource = GetComponent<AudioSource>();
+
+        RhyInterval = (60 / RhyBpm) * RhyMul;
+        Debug.Log(("!!! : || " + RhyInterval));
+
         RhyToleranceTimer = RhyTolerance;
         RhyIntervalTimer = RhyInterval;
     }

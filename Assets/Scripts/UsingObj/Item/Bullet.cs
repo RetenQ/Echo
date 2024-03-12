@@ -61,6 +61,7 @@ public class Bullet : MonoBehaviour
 
             if (collision.CompareTag(targetStr))
             {
+                Debug.Log("!!!!!!");
                 collision.gameObject.GetComponent<BaseObj>().Hurt(damage * damageMul);  //‘Ï≥……À∫¶
 
                 rb.velocity = Vector3.zero;

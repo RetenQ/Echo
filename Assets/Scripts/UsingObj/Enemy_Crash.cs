@@ -5,7 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Enemy_Crash : Enemy
 {
-    [Header("冲撞敌人自定义")]
+    [Header("撞击敌人")]
     public float dashSpeed = 15f; // 冲撞速度
     public int attackDamage; //攻击伤害
     [SerializeField] private bool hasAttack = false; //已经攻击过 ， 防止多次重复结算
@@ -18,7 +18,9 @@ public class Enemy_Crash : Enemy
         // 如果目标物体存在
         if (target != null)
         {
-            Debug.Log("CrashAttack"); 
+            //Debug.Log("CrashAttack");
+            //Audio_attack.Play();
+
             // 计算冲撞的方向，单位向量
             Vector2 direction = (target.transform.position - transform.position).normalized;
 

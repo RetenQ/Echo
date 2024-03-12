@@ -29,6 +29,10 @@ public class Enemy : Chara
     public Rigidbody2D rb;
     public Image hpBar;
 
+    [Header("“Ù–ß")]
+    public AudioSource Audio_attack;
+    public AudioSource Audio_hurt;
+
     protected override void ObjAwake()
     {
         animator = GetComponent<Animator>();
@@ -89,6 +93,7 @@ public class Enemy : Chara
     {
         Debug.Log("?"); 
         nowHp -= _damage;
+        Audio_hurt.Play();
         animator.Play("Hurt"); 
     }
 
