@@ -20,7 +20,7 @@ public class PlayerBase : Chara
     [Header("冲刺数据")]
     public float dashCD = 2;
     public float dashMul;  // 此处是dash的加速倍数
-    [SerializeField] private float dashTimer = -99f;
+    public float dashTimer = 0.01f;
     public float maxDashTime = 1.5f;
     public float stopDashTime = 0.1f; //多久可以手动停止
     [SerializeField] private float startDashTimer;

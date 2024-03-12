@@ -55,6 +55,8 @@ public class Bullet : MonoBehaviour
             {
                 //碰到墙就只停下了
                 rb.velocity = Vector3.zero;
+                Destroy(gameObject);
+
             }
 
             if (collision.CompareTag(targetStr))
@@ -63,7 +65,7 @@ public class Bullet : MonoBehaviour
 
                 rb.velocity = Vector3.zero;
 
-                //Destroy(gameObject);
+                Destroy(gameObject);
             }
             else if (!collision.CompareTag(ignoreStr))
             {

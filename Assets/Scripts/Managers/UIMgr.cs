@@ -14,6 +14,7 @@ public class UIMgr : SingletonMono<UIMgr>
     [Header("UI组件区")]
     public Scrollbar hpBar;
     public Scrollbar beatBar;
+    public Image DashCD; 
 
 
     private void Start()
@@ -33,6 +34,7 @@ public class UIMgr : SingletonMono<UIMgr>
         // 对于Scrollbar调整的是size
         hpBar.size = PlayerSc.nowHp / PlayerSc.maxHp;
         beatBar.size = PlayerSc.nowBeatValue / (100.0f); // 最大值反正是100
+        DashCD.fillAmount = PlayerSc.dashTimer / PlayerSc.dashCD; 
 
     }
 }
