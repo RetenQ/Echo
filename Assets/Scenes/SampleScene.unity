@@ -9153,7 +9153,7 @@ MonoBehaviour:
   realAudio: {fileID: 0}
   isActive: 0
   eventID: 1234
-  RhyTolerance: 0.2
+  RhyTolerance: 0.4
   RhyToleranceTimer: 0
   startPlay: 1
   delayPlay: 0.2
