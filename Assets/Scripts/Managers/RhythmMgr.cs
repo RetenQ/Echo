@@ -2,18 +2,25 @@ using SonicBloom.Koreo;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // 管理BGM的东西
 public class RhythmMgr : SingletonMono<RhythmMgr>
 {
     [Header("BGM设置区")]
+    public GameObject realPlayer;
+    public AudioSource realAudio; 
+
     [SerializeField]private bool isActive = false;
     public string eventID;
     public float RhyTolerance; // isRhy为True多久之后改回false
     public float RhyToleranceTimer ;
-    public float delayPlayer ; // 一开始延迟播放
+    public float startPlay ; // 倒计时多久之后开始节奏系统
+    public float delayPlay ; // 延迟播放，实际上是可以提前多少秒踩点 s
 
-    public bool isRhy = false; 
+    public bool isRhy = false;
+    [SerializeField] private float timeToArrive;
+    [SerializeField] private float delayPlay_Record;
 
 
 
@@ -23,7 +30,8 @@ public class RhythmMgr : SingletonMono<RhythmMgr>
     public List<BaseObj> Objs;
 
     [Header("组件")]
-    public AudioSource AudioSource;
+    public AudioSource audioSource;
+    public Image RhyBar; 
 
     protected override void Awake()
     {
@@ -36,7 +44,15 @@ public class RhythmMgr : SingletonMono<RhythmMgr>
     {
         Player = GameObject.FindWithTag("Player"); 
         PlayerSc = Player.GetComponent<PlayerBase>();
-        AudioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
+
+        realPlayer = transform.Find("realPlayer").gameObject;
+        realAudio = realPlayer.GetComponent<AudioSource>(); // 真实的播放器
+        realAudio.clip = audioSource.clip;
+
+        delayPlay_Record = delayPlay;
+
+        timeToArrive = delayPlay_Record; 
 
 /*        RhyInterval = (60 / RhyBpm) * RhyMul;
         Debug.Log(("!!! : || " + RhyInterval));
@@ -59,14 +75,30 @@ public class RhythmMgr : SingletonMono<RhythmMgr>
     {
         if (!isActive)
         {
-            if(delayPlayer <=0)
+            if(startPlay <=0)
             {
                 RhyMgrStart();
 
             }
             else
             {
-                delayPlayer -= Time.fixedDeltaTime;
+                startPlay -= Time.fixedDeltaTime;
+            }
+        }
+
+        // 延迟播放设置
+        if (!realAudio.isPlaying)
+        {
+           if(isActive)
+            {
+                if(delayPlay <=0)
+                {
+                    PlayRealAudio();
+                }
+                else
+                {
+                    delayPlay -= Time.fixedDeltaTime;   
+                }
             }
         }
 
@@ -83,6 +115,11 @@ public class RhythmMgr : SingletonMono<RhythmMgr>
             }
         }
 
+
+        timeToArrive -= Time.fixedDeltaTime;
+
+        RhyBar.fillAmount = (1.0f - (timeToArrive / delayPlay_Record)); 
+
     }
 
     private void DrumBeat(KoreographyEvent koreographyEvent)
@@ -92,12 +129,15 @@ public class RhythmMgr : SingletonMono<RhythmMgr>
         PlayerRhyOn(); 
     }
 
-
+    private void PlayRealAudio()
+    {
+        realAudio.Play();
+    }
 
     private void RhyMgrStart()
     {
         isActive = true;
-        AudioSource.Play();
+        audioSource.Play();
         // 播放
     }
 
@@ -123,6 +163,10 @@ public class RhythmMgr : SingletonMono<RhythmMgr>
     public void PlayerRhyOn()
     {
         Debug.Log("ON RHY");
+
+        timeToArrive = delayPlay_Record;
+
+
         isRhy = true; //设置为True
         // playerRhy = true;
         PlayerSc.PlayerRhyOn();
