@@ -91,7 +91,7 @@ public class Enemy : Chara
 
     public override void Hurt(float _damage)
     {
-        Debug.Log("?"); 
+        // Debug.Log("?"); 
         nowHp -= _damage;
         Audio_hurt.Play();
         animator.Play("Hurt"); 

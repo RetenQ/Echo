@@ -16,7 +16,7 @@ public class Enemy_Fire : Enemy
 
         // 计算到玩家的方向
         Vector2 direction = (Player.transform.position - transform.position).normalized;
-        Debug.Log("Dir" + direction);
+       // Debug.Log("Dir" + direction);
         bullet_temp.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
     }
 

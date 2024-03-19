@@ -162,7 +162,7 @@ public class RhythmMgr : SingletonMono<RhythmMgr>
 
     public void PlayerRhyOn()
     {
-        Debug.Log("ON RHY");
+        //Debug.Log("ON RHY");
 
         timeToArrive = delayPlay_Record;
 
@@ -174,7 +174,7 @@ public class RhythmMgr : SingletonMono<RhythmMgr>
 
     public void PlayerRhyOff()
     {
-        Debug.Log("OFF RHY");
+        //Debug.Log("OFF RHY");
 
         isRhy = false;
         RhyToleranceTimer = RhyTolerance; 
