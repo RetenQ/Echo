@@ -9022,7 +9022,7 @@ MonoBehaviour:
   eventID: 1234
   RhyTolerance: 0.4
   RhyToleranceTimer: 0
-  delayPlayer: 1
+  delayPlayer: 0.1
   isRhy: 0
   Player: {fileID: 0}
   PlayerSc: {fileID: 0}
