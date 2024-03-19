@@ -9020,9 +9020,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   eventID: 1234
-  RhyTolerance: 0.4
+  RhyTolerance: 0.2
   RhyToleranceTimer: 0
-  delayPlayer: 0.1
+  delayPlayer: 1
   isRhy: 0
   Player: {fileID: 0}
   PlayerSc: {fileID: 0}
