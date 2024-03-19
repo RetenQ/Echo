@@ -16,7 +16,7 @@ public class RhythmMgr : SingletonMono<RhythmMgr>
     public float RhyTolerance; // isRhy为True多久之后改回false
     public float RhyToleranceTimer ;
     public float startPlay ; // 倒计时多久之后开始节奏系统
-    public float delayPlay ; // 延迟播放，实际上是可以提前多少秒踩点
+    public float delayPlay ; // 延迟播放，实际上是可以提前多少秒踩点 s
 
     public bool isRhy = false;
     [SerializeField] private float timeToArrive;
