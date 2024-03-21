@@ -9156,7 +9156,7 @@ MonoBehaviour:
   RhyTolerance: 0.2
   RhyToleranceTimer: 0
   startPlay: 0
-  delayPlay: 0.1
+  delayPlay: 0.3
   isRhy: 0
   timeToArrive: 0
   delayPlay_Record: 0
