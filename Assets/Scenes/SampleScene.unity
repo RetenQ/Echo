@@ -9155,8 +9155,8 @@ MonoBehaviour:
   eventID: 1234
   RhyTolerance: 0.2
   RhyToleranceTimer: 0
-  startPlay: 1
-  delayPlay: 0.2
+  startPlay: 0
+  delayPlay: 0.1
   isRhy: 0
   timeToArrive: 0
   delayPlay_Record: 0

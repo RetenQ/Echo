@@ -19,7 +19,7 @@ public class RhythmMgr : SingletonMono<RhythmMgr>
     public float delayPlay ; // 延迟播放，实际上是可以提前多少秒踩点
 
     public bool isRhy = false;
-    [SerializeField] private float timeToArrive;
+    [SerializeField] private float timeToArrive; // 用于计算UI
     [SerializeField] private float delayPlay_Record;
 
 
@@ -131,14 +131,15 @@ public class RhythmMgr : SingletonMono<RhythmMgr>
 
     private void PlayRealAudio()
     {
+        // 播放音乐谱。二者之间的延迟实际上就是delayPlay
         realAudio.Play();
     }
 
     private void RhyMgrStart()
     {
+        // 播放节奏谱，也就是压点的谱
         isActive = true;
         audioSource.Play();
-        // 播放
     }
 
     // 控制Obj
