@@ -85,50 +85,52 @@ public class PlayerBase : Chara
 
         if (!islock)
         {
-            if (!isdash)
+            if (!isAttack)
             {
-                //非冲刺状态下进行的操作
-
-                Movement();
-
-                if (lastMovement.x == -1)       facing = 1; //左
-                else if (lastMovement.x == 1)   facing = 2; //右
-                else if (lastMovement.y == 1)   facing = 3; //上
-                else                            facing = 4; //下
-                
-                if(facing!=0  && (movement.x != 0 || movement.y != 0))
+                if (!isdash)
                 {
-                    PlayAnim("run");//运动
+                    //非冲刺状态下进行的操作
 
+                    Movement();
+
+                    if (lastMovement.x == -1) facing = 1; //左
+                    else if (lastMovement.x == 1) facing = 2; //右
+                    else if (lastMovement.y == 1) facing = 3; //上
+                    else facing = 4; //下
+
+                    if (facing != 0 && (movement.x != 0 || movement.y != 0))
+                    {
+                        PlayAnim("run");//运动
+
+                    }
+                    else
+                    {
+                        PlayAnim("idle");
+
+
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.LeftControl) && dashTimer <= 0)
+                    {
+                        DashOn();
+                    }
                 }
                 else
                 {
-                    PlayAnim("idle");
-
-
-                }
-
-                if (Input.GetKeyDown(KeyCode.LeftControl) && dashTimer <= 0)
-                {
-                    DashOn();
-                }
-            }
-            else
-            {
-                PlayAnim("dash");
-                if(Input.GetKeyDown(KeyCode.LeftControl) && startDashTimer <= maxDashTime - stopDashTime)
-                {
-                    // 如果启动后再次按下冲刺
-                    startDashTimer = 0;
+                    PlayAnim("dash");
+                    if (Input.GetKeyDown(KeyCode.LeftControl) && startDashTimer <= maxDashTime - stopDashTime)
+                    {
+                        // 如果启动后再次按下冲刺
+                        startDashTimer = 0;
                         DashOff();
 
-                }
+                    }
 
-                // 冲刺Mode
-                startDashTimer -= Time.deltaTime;
+                    // 冲刺Mode
+                    startDashTimer -= Time.deltaTime;
                     if (startDashTimer <= 0)
                     {
-                    // 时间到了结束状态
+                        // 时间到了结束状态
                         DashOff();
 
                     }
@@ -137,9 +139,12 @@ public class PlayerBase : Chara
 
                         // 处于冲刺状态下进行冲刺
                         // 这里位置使用的是最后移动的方向
-                        rb.velocity = lastMovement * speed * dashMul;  
+                        rb.velocity = lastMovement * speed * dashMul;
                     }
+                }
             }
+
+            
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -306,6 +311,8 @@ public class PlayerBase : Chara
     private void Attack()
     {
         // 播放动画
+        isAttack = true;
+
         PlayAnim("attack"); 
         // 交代给AttackArrange来执行
         // 现在先写普通的攻击模块

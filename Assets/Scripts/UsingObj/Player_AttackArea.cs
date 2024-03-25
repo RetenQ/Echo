@@ -8,40 +8,35 @@ public class Player_AttackArea : MonoBehaviour
     [Header("基础数值")]
     [SerializeField] private bool isAttack = false;  // 避免重复计算
     [SerializeField] private float attack;
-    [SerializeField] public Animator animator;
 
     [SerializeField] private int playerfacing; // 朝向
+
+    public float maxAttackTime;
+    [SerializeField] private float maxAttackTimer; 
 
     public float attackRange = 5f;
     private Collider2D[] enemiesInRange;
 
-    [SerializeField] private bool wasInTransition = true; // 用于记录上一帧是否在状态转换中
     
     public PlayerBase playerSC;
 
-
-    public float maxAttackTime;
-
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        playerSC = GameObject.FindWithTag("Player").GetComponent<PlayerBase>();
     }
 
     void FixedUpdate()
     {
-/*        // 检查当前动画状态是否处于结束状态或切换状态
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-
-        bool isInTransition = animator.IsInTransition(0);
-
-        // 如果当前不在状态转换中，并且上一帧在转换中，则表示动画刚刚结束或者切换
-        if (stateInfo.normalizedTime >= 1f ||(!isInTransition && wasInTransition))
+        if(maxAttackTimer <= 0.0f)
         {
-            StopAttack(); // 调用函数A
+            // 恢复
+            maxAttackTimer = maxAttackTime;
+            StopAttack();
         }
-
-        // 更新wasInTransition的值，用于下一帧的判断
-        wasInTransition = isInTransition;*/
+        else
+        {
+            maxAttackTimer -= Time.fixedDeltaTime; 
+        }
     }
 
     // PlayerBase发送攻击->PlayerBase修改isAttack = false ->
@@ -70,6 +65,7 @@ public class Player_AttackArea : MonoBehaviour
                 {
                     // 记录在攻击范围内的敌人
                     //Debug.Log("Enemy detected: " + enemyCollider.gameObject.name);
+                    enemyCollider.GetComponent<Enemy>().Hurt(attack);
 
                 }
             }
@@ -94,6 +90,10 @@ public class Player_AttackArea : MonoBehaviour
         this.playerSC = _player;       
     }
 
+    void OnDrawGizmos()
+    {
+        OnDrawGizmosSelected();
+    }
 
     void OnDrawGizmosSelected()
     {
