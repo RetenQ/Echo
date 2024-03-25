@@ -7979,7 +7979,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.72, y: -0.02, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9761,6 +9761,8 @@ MonoBehaviour:
   audio_run: {fileID: 0}
   audio_attack: {fileID: 0}
   audio_dash: {fileID: 0}
+  attackArea: {fileID: 0}
+  attackAreaSC: {fileID: 0}
   RightD: 0
   ErrorD: 0
 --- !u!95 &998280646
@@ -11016,7 +11018,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1137612678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.72, y: -0.02, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11681,7 +11683,7 @@ GameObject:
   - component: {fileID: 1400438058}
   - component: {fileID: 1400438057}
   m_Layer: 9
-  m_Name: Enemy_crash
+  m_Name: Enemy_crash_Test
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11699,7 +11701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad705bba33f3642f4bc26cd844e12c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.5
+  _speed: 0
   _angularSpeed: 120
   _acceleration: 8
   _stoppingDistance: 0
@@ -11846,10 +11848,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0419723b08cb0a04092973783f8eef3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 50
+  maxHp: 10000
   nowHp: 0
-  attack: 10
-  speed: 1
+  attack: 0
+  speed: 0
   isRhyObj: 0
   isRhyAct: 0
   Nav2dAgent: {fileID: 1400438049}
@@ -11857,23 +11859,23 @@ MonoBehaviour:
   Player: {fileID: 0}
   PlayerSc: {fileID: 0}
   target: {fileID: 0}
-  AttackCD: 2
-  activeArrange: 3.7
-  attackArrange: 3.3
-  attackCDTimer: 0
+  AttackCD: 9999
+  activeArrange: 0
+  attackArrange: 0
+  attackCDTimer: 9999
   animator: {fileID: 0}
   audio: {fileID: 0}
   rb: {fileID: 0}
   hpBar: {fileID: 0}
   Audio_attack: {fileID: 1400438058}
   Audio_hurt: {fileID: 1400438057}
-  radius: 3.3
+  radius: 0
   segments: 50
   color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  dashSpeed: 20
-  attackDamage: 10
+  dashSpeed: 0
+  attackDamage: 0
   hasAttack: 0
-  maxDistance: 7
+  maxDistance: 0
 --- !u!82 &1400438057
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12321,7 +12323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1502641318
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12879,7 +12881,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526518990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.72, y: -0.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12889,6 +12891,7 @@ Transform:
   - {fileID: 623316780}
   - {fileID: 2141254527}
   - {fileID: 594408755}
+  - {fileID: 1558419707}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12945,6 +12948,8 @@ MonoBehaviour:
   audio_run: {fileID: 623316781}
   audio_attack: {fileID: 2141254528}
   audio_dash: {fileID: 594408756}
+  attackArea: {fileID: 0}
+  attackAreaSC: {fileID: 0}
   RightD: 0
   ErrorD: 0
 --- !u!70 &1526518995
@@ -12984,6 +12989,79 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!1 &1558419706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1558419707}
+  - component: {fileID: 1558419708}
+  - component: {fileID: 1558419709}
+  m_Layer: 7
+  m_Name: AttackArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1558419707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558419706}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1526518993}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1558419708
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558419706}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.00000032782555, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.9882245, y: 1.9882245}
+  m_EdgeRadius: 0
+--- !u!114 &1558419709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558419706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2825da46ea542e54d88354ad82f459f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAttack: 0
+  attack: 0
 --- !u!114 &1575486176 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6812119104706287685, guid: 722862f156356b740b3da09e23c4d959, type: 3}
@@ -13018,7 +13096,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &1601916055
 Rigidbody2D:
   serializedVersion: 4
@@ -13746,7 +13824,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1714604156
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14401,7 +14479,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1864367370
 AudioSource:
   m_ObjectHideFlags: 0

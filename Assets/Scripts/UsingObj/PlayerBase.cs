@@ -54,6 +54,10 @@ public class PlayerBase : Chara
     public AudioSource audio_attack;
     public AudioSource audio_dash;
 
+    [Header("子物体")]
+    public GameObject attackArea; 
+    public Player_AttackArea attackAreaSC; 
+
     [Header("测试数据")]
     public int RightD; 
     public int ErrorD; 
@@ -64,6 +68,9 @@ public class PlayerBase : Chara
         col = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+
+        attackArea = transform.Find("AttackArea").gameObject; 
+        attackAreaSC = attackArea.GetComponent<Player_AttackArea>();
     }
 
     protected override void ObjStart()
@@ -307,6 +314,12 @@ public class PlayerBase : Chara
             bullet_temp.GetComponent<Bullet>().SetBullet(attack);
             bullet_temp.GetComponent<Rigidbody2D>().AddForce(ToMouseDirection * bulletSpeed, ForceMode2D.Impulse);
         }
+
+    }
+
+    private void Attack()
+    {
+        // 往指针方向加速
 
     }
 
