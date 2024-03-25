@@ -10,6 +10,7 @@ public class PlayerBase : Chara
     [SerializeField] private bool islock = false; //锁定时无法操作
     [SerializeField] private bool isdash = false; 
     [SerializeField] private bool isRun = false; 
+                     public bool isAttack = false; 
     private Vector2 movement;
     [SerializeField] private Vector2 lastMovement;//最后一次非0方向
 
@@ -58,10 +59,6 @@ public class PlayerBase : Chara
     public GameObject attackArea; 
     public Player_AttackArea attackAreaSC; 
 
-    [Header("测试数据")]
-    public int RightD; 
-    public int ErrorD; 
-
     protected override void ObjAwake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -81,20 +78,8 @@ public class PlayerBase : Chara
 
     protected override void ObjUpdate()
     {
-        // 测试用
-        if(Input.GetKeyDown(KeyCode.K)) {
-            if (inRhy)
-            {
-                RightD++;
-            }
-            else
-            {
-                ErrorD++;
-            }
-        }
 
         // Debug.Log("R:" + RightD + " || E:" + ErrorD);
-
 
         DataUpdater();
 
@@ -165,6 +150,7 @@ public class PlayerBase : Chara
             if (Input.GetMouseButtonDown(1))
             {
                 //右键
+                Attack();
             }
         } 
     }
@@ -319,8 +305,14 @@ public class PlayerBase : Chara
 
     private void Attack()
     {
-        // 往指针方向加速
+        // 播放动画
+        PlayAnim("attack"); 
+        // 交代给AttackArrange来执行
+        // 现在先写普通的攻击模块
+        attackAreaSC.setAttackArea(attack , facing , this); //目前设置成和攻击力一样，后面可能考虑加值
+        attackArea.SetActive(true);
 
+        // 在attackArea的代码中的Onenable发动攻击和相关内容
     }
 
     public void PlayerRhyOn()
