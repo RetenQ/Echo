@@ -147,16 +147,17 @@ public class BaseObj : MonoBehaviour
             nowHp -= _damage;
         }
 
+        _hurtby.UpdateLastAttack(this);
         lastHurtby = _hurtby;
     }
 
 
-    protected void UpdateLastAttack( BaseObj _obj)
+    public void UpdateLastAttack( BaseObj _obj)
     {
         this.lastAttackto = _obj;
     }
 
-    protected void UpdateLastHurt(BaseObj _obj)
+    public void UpdateLastHurt(BaseObj _obj)
     {
         this.lastHurtby = _obj;
     }

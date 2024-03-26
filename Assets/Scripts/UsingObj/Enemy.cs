@@ -96,6 +96,7 @@ public class Enemy : Chara
         Audio_hurt.Play();
         animator.Play("Hurt");
 
+        _hurtby.UpdateLastAttack(this);
         lastHurtby = _hurtby;
     }
 
