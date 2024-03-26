@@ -24,11 +24,17 @@ using UnityEngine;
 public class BaseObj : MonoBehaviour
 {
     [Header("基础数值")]
+    public bool alive = true ; 
+
     public float maxHp;
     public float nowHp;
 
     public float attack; // 攻击力，这里就是直接表示成功命中会有多少伤害 
     public float speed;
+
+    [Header("数据记录区")]
+    public BaseObj lastAttackto; //上次攻击的对象
+    public BaseObj lastHurtby; //上次打你的对象
 
 
     [Header("节奏响应部分")]
@@ -92,12 +98,36 @@ public class BaseObj : MonoBehaviour
 
     public void Death()
     {
-        if (isRhyObj)
+        if (alive)
         {
-            RhythmMgr.GetInstance().RemoveObj(this); // 解除注册
+            // 还活着才触发
+
+            if (isRhyObj)
+            {
+                RhythmMgr.GetInstance().RemoveObj(this); // 解除注册
+            }
+
+            KillNotify(lastHurtby);
+
+            ObjDeath();
+
+            alive = false;
         }
 
-        ObjDeath();
+    }
+
+    protected void KillNotify(BaseObj _obj)
+    {
+
+        Debug.Log(gameObject.name +" Killed by  " + _obj.gameObject.name);
+        // 通知击杀者
+        _obj.KillNotif_Recive(this);
+    }
+
+    protected void KillNotif_Recive(BaseObj _obj)
+    {
+        // 接受通知
+        Debug.Log(gameObject.name + " kill : " + _obj.gameObject.name);
     }
 
     public virtual void ObjDeath()
@@ -105,7 +135,7 @@ public class BaseObj : MonoBehaviour
         // 各个物体在死亡的时候的额外操作
     }
 
-    public virtual void Hurt(float _damage)
+    public virtual void Hurt(float _damage , BaseObj _hurtby)
     {
         if(gameObject.CompareTag("Wall"))
         {
@@ -116,6 +146,19 @@ public class BaseObj : MonoBehaviour
             
             nowHp -= _damage;
         }
+
+        lastHurtby = _hurtby;
+    }
+
+
+    protected void UpdateLastAttack( BaseObj _obj)
+    {
+        this.lastAttackto = _obj;
+    }
+
+    protected void UpdateLastHurt(BaseObj _obj)
+    {
+        this.lastHurtby = _obj;
     }
 
     public virtual void Heal(float _heal)

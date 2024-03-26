@@ -12,7 +12,7 @@ public class Enemy_Fire : Enemy
     {
         Audio_attack.Play();
         GameObject bullet_temp = Instantiate(bullet, transform.position, Quaternion.identity);
-        bullet_temp.GetComponent<Bullet>().SetBullet(attack); //将子弹伤害设置为角色攻击力
+        bullet_temp.GetComponent<Bullet>().SetBullet( attack , this); //将子弹伤害设置为角色攻击力
 
         // 计算到玩家的方向
         Vector2 direction = (Player.transform.position - transform.position).normalized;

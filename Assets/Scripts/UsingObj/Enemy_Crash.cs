@@ -47,7 +47,7 @@ public class Enemy_Crash : Enemy
             if(!hasAttack)
             {
                 hasAttack = true;
-                PlayerSc.Hurt(attackDamage);
+                PlayerSc.Hurt(attackDamage,this);
                 hasAttack = true;
 
             }

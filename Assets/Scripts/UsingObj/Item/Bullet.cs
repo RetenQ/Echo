@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
 
     // 子弹
-
+    public BaseObj shooter; //射出子弹的对象
     public float damage;
     public float damageMul = 1.0f;
     public float maxLifeTime;
@@ -34,13 +34,16 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void SetBullet(float _damage)
+    public void SetBullet(  float _damage , BaseObj _shooter)
     {
+        this.shooter = _shooter;
         this.damage = _damage;
     }
 
-    public void SetBullet(float _damage , float _mul)
+    public void SetBullet( float _damage , float _mul , BaseObj _shooter)
     {
+        this.shooter = _shooter;
+
         this.damage = _damage;
         this.damageMul = _mul;
     }
@@ -62,7 +65,7 @@ public class Bullet : MonoBehaviour
             if (collision.CompareTag(targetStr))
             {
                  // Debug.Log("!!!!!!");
-                collision.gameObject.GetComponent<BaseObj>().Hurt(damage * damageMul);  //造成伤害
+                collision.gameObject.GetComponent<BaseObj>().Hurt(damage * damageMul , shooter);  //造成伤害
 
                 rb.velocity = Vector3.zero;
 

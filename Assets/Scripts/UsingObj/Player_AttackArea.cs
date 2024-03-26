@@ -66,7 +66,7 @@ public class Player_AttackArea : MonoBehaviour
                 {
                     // 记录在攻击范围内的敌人
                     //Debug.Log("Enemy detected: " + enemyCollider.gameObject.name);
-                    enemyCollider.GetComponent<Enemy>().Hurt(attack);
+                    enemyCollider.GetComponent<Enemy>().Hurt(attack, playerSC);
 
                 }
             }

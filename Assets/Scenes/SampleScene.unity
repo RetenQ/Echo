@@ -286,6 +286,8 @@ MonoBehaviour:
   nowHp: 0
   attack: 0
   speed: 0
+  lastAttackto: {fileID: 0}
+  lastHurtby: {fileID: 0}
   isRhyObj: 0
   isRhyAct: 0
 --- !u!61 &96033574
@@ -7550,6 +7552,8 @@ MonoBehaviour:
   nowHp: 0
   attack: 0
   speed: 0
+  lastAttackto: {fileID: 0}
+  lastHurtby: {fileID: 0}
   isRhyObj: 0
   isRhyAct: 0
 --- !u!61 &361634728
@@ -8055,6 +8059,8 @@ MonoBehaviour:
   nowHp: 0
   attack: 0
   speed: 0
+  lastAttackto: {fileID: 0}
+  lastHurtby: {fileID: 0}
   isRhyObj: 0
   isRhyAct: 0
 --- !u!61 &570388834
@@ -8261,6 +8267,8 @@ MonoBehaviour:
   nowHp: 0
   attack: 0
   speed: 0
+  lastAttackto: {fileID: 0}
+  lastHurtby: {fileID: 0}
   isRhyObj: 0
   isRhyAct: 0
 --- !u!61 &591881553
@@ -8647,6 +8655,8 @@ MonoBehaviour:
   nowHp: 0
   attack: 0
   speed: 0
+  lastAttackto: {fileID: 0}
+  lastHurtby: {fileID: 0}
   isRhyObj: 0
   isRhyAct: 0
 --- !u!61 &649773850
@@ -8903,6 +8913,8 @@ MonoBehaviour:
   nowHp: 0
   attack: 0
   speed: 0
+  lastAttackto: {fileID: 0}
+  lastHurtby: {fileID: 0}
   isRhyObj: 0
   isRhyAct: 0
 --- !u!61 &767771405
@@ -9728,6 +9740,8 @@ MonoBehaviour:
   nowHp: 0
   attack: 1
   speed: 1
+  lastAttackto: {fileID: 0}
+  lastHurtby: {fileID: 0}
   isRhyObj: 0
   isRhyAct: 0
   inRhy: 0
@@ -9820,6 +9834,8 @@ MonoBehaviour:
   nowHp: 0
   attack: 0
   speed: 0
+  lastAttackto: {fileID: 0}
+  lastHurtby: {fileID: 0}
   isRhyObj: 0
   isRhyAct: 0
 --- !u!61 &1011963238
@@ -10859,6 +10875,8 @@ MonoBehaviour:
   nowHp: 0
   attack: 0
   speed: 0
+  lastAttackto: {fileID: 0}
+  lastHurtby: {fileID: 0}
   isRhyObj: 0
   isRhyAct: 0
 --- !u!61 &1066852817
@@ -11411,6 +11429,8 @@ MonoBehaviour:
   nowHp: 0
   attack: 0
   speed: 0
+  lastAttackto: {fileID: 0}
+  lastHurtby: {fileID: 0}
   isRhyObj: 0
   isRhyAct: 0
 --- !u!1 &1321681231
@@ -11847,10 +11867,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0419723b08cb0a04092973783f8eef3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 10000
+  maxHp: 30
   nowHp: 0
   attack: 0
   speed: 0
+  lastAttackto: {fileID: 0}
+  lastHurtby: {fileID: 0}
   isRhyObj: 0
   isRhyAct: 0
   Nav2dAgent: {fileID: 1400438049}
@@ -12102,6 +12124,8 @@ MonoBehaviour:
   nowHp: 0
   attack: 0
   speed: 0
+  lastAttackto: {fileID: 0}
+  lastHurtby: {fileID: 0}
   isRhyObj: 0
   isRhyAct: 0
 --- !u!61 &1409448256
@@ -12573,6 +12597,8 @@ MonoBehaviour:
   nowHp: 0
   attack: 10
   speed: 1
+  lastAttackto: {fileID: 0}
+  lastHurtby: {fileID: 0}
   isRhyObj: 0
   isRhyAct: 0
   Nav2dAgent: {fileID: 1502641321}
@@ -12910,6 +12936,8 @@ MonoBehaviour:
   nowHp: 0
   attack: 10
   speed: 3
+  lastAttackto: {fileID: 0}
+  lastHurtby: {fileID: 0}
   isRhyObj: 0
   isRhyAct: 0
   inRhy: 0
@@ -13236,6 +13264,8 @@ MonoBehaviour:
   nowHp: 0
   attack: 5
   speed: 0
+  lastAttackto: {fileID: 0}
+  lastHurtby: {fileID: 0}
   isRhyObj: 0
   isRhyAct: 0
   Nav2dAgent: {fileID: 1601916056}
@@ -13485,6 +13515,8 @@ MonoBehaviour:
   nowHp: 0
   attack: 0
   speed: 0
+  lastAttackto: {fileID: 0}
+  lastHurtby: {fileID: 0}
   isRhyObj: 0
   isRhyAct: 0
 --- !u!61 &1621276554
@@ -14009,6 +14041,8 @@ MonoBehaviour:
   nowHp: 0
   attack: 5
   speed: 0
+  lastAttackto: {fileID: 0}
+  lastHurtby: {fileID: 0}
   isRhyObj: 0
   isRhyAct: 0
   Nav2dAgent: {fileID: 1714604160}
@@ -14706,6 +14740,8 @@ MonoBehaviour:
   nowHp: 0
   attack: 10
   speed: 1
+  lastAttackto: {fileID: 0}
+  lastHurtby: {fileID: 0}
   isRhyObj: 0
   isRhyAct: 0
   Nav2dAgent: {fileID: 1864367373}
@@ -15080,6 +15116,8 @@ MonoBehaviour:
   nowHp: 0
   attack: 0
   speed: 0
+  lastAttackto: {fileID: 0}
+  lastHurtby: {fileID: 0}
   isRhyObj: 0
   isRhyAct: 0
   Nav2dAgent: {fileID: 0}

@@ -89,12 +89,14 @@ public class Enemy : Chara
 
     }
 
-    public override void Hurt(float _damage)
+    public override void Hurt(float _damage, BaseObj _hurtby)
     {
         // Debug.Log("?"); 
         nowHp -= _damage;
         Audio_hurt.Play();
-        animator.Play("Hurt"); 
+        animator.Play("Hurt");
+
+        lastHurtby = _hurtby;
     }
 
     public virtual void FindPlayer()

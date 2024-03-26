@@ -303,7 +303,7 @@ public class PlayerBase : Chara
             audio_attack.Play();
 
             GameObject bullet_temp = Instantiate(bullet_ex, firePosition.position, Quaternion.identity);
-            bullet_temp.GetComponent<Bullet>().SetBullet(attack , 2.0f);
+            bullet_temp.GetComponent<Bullet>().SetBullet(attack , 2.0f , this);
             bullet_temp.GetComponent<Rigidbody2D>().AddForce(ToMouseDirection * bulletSpeed_ex, ForceMode2D.Impulse);
         }
         else
@@ -311,7 +311,7 @@ public class PlayerBase : Chara
             audio_attack.clip = attackClips[0];
             audio_attack.Play();
             GameObject bullet_temp = Instantiate(bullet, firePosition.position, Quaternion.identity);
-            bullet_temp.GetComponent<Bullet>().SetBullet(attack);
+            bullet_temp.GetComponent<Bullet>().SetBullet(attack,this);
             bullet_temp.GetComponent<Rigidbody2D>().AddForce(ToMouseDirection * bulletSpeed, ForceMode2D.Impulse);
         }
 
