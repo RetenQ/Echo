@@ -45,10 +45,11 @@ public class Player_AttackArea : MonoBehaviour
 
     private void OnEnable()
     {
-        StartAttack();
+        //  StartAttack();
+        // 改为在Player的动画的关键帧检测
     }
 
-    private void StartAttack()
+    public void StartAttack()
     {
         if(isAttack == false)
         {

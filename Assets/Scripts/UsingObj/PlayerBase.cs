@@ -257,6 +257,15 @@ public class PlayerBase : Chara
         }
     }
 
+    /// <summary>
+    /// 停止玩家的动作，目前只是停止位移
+    /// </summary>
+    public void StopMove()
+    {
+        rb.velocity = Vector2.zero; // 将速度设置为零向量
+
+    }
+
     private void DataUpdater()
     {
         mouseLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -310,6 +319,9 @@ public class PlayerBase : Chara
 
     private void Attack()
     {
+        StopMove(); //攻击时不得移动
+
+
         // 播放动画
         isAttack = true;
 
@@ -320,6 +332,14 @@ public class PlayerBase : Chara
         attackArea.SetActive(true);
 
         // 在attackArea的代码中的Onenable发动攻击和相关内容
+    }
+
+    /// <summary>
+    /// 真正调用攻击的方法，配合动画的event使用
+    /// </summary>
+    private void RealAttack()
+    {
+        attackAreaSC.StartAttack();
     }
 
     public void PlayerRhyOn()
