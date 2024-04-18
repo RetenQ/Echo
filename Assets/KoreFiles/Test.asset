@@ -13,23 +13,7 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   mEventID: 1234
-  mEventList:
-  - mStartSample: 139713
-    mEndSample: 139713
-  - mStartSample: 162523
-    mEndSample: 162523
-  - mStartSample: 185334
-    mEndSample: 185334
-  - mStartSample: 208144
-    mEndSample: 208144
-  - mStartSample: 230954
-    mEndSample: 230954
-  - mStartSample: 253765
-    mEndSample: 253765
-  - mStartSample: 276575
-    mEndSample: 276575
-  - mStartSample: 299385
-    mEndSample: 299385
+  mEventList: []
   _SerializedPayloadTypes: []
   _ColorPayloads: []
   _ColorPayloadIdxs: 
